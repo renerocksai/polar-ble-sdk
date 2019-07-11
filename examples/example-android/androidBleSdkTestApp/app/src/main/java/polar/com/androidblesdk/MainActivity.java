@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     Disposable ppgDisposable;
     Disposable ppiDisposable;
     Disposable scanDisposable;
-    String DEVICE_ID = "218DDA23"; // or bt address like F5:A7:B8:EF:7A:D1 // TODO replace with your device id
+    String DEVICE_ID = "4FF0FF2A"; // or bt address like F5:A7:B8:EF:7A:D1 // TODO replace with your device id
     Disposable autoConnectDisposable;
     PolarExerciseEntry exerciseEntry;
 
