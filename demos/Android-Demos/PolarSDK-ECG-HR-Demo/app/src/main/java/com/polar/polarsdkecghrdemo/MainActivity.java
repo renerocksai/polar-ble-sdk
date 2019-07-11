@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String TAG = "Polar_MainActivity";
     private String sharedPrefsKey = "polar_device_id";
-    private String DEVICE_ID;
+    private String DEVICE_ID = "4FF0FF2A";
     SharedPreferences sharedPreferences;
 
     @Override

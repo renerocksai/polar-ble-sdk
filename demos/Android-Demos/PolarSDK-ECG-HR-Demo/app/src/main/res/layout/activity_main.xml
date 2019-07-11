@@ -68,17 +68,25 @@
         android:id="@+id/imageView"
         android:layout_width="301dp"
         android:layout_height="46dp"
-        app:srcCompat="@mipmap/nimlogo"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="125dp" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSetID"
+        app:srcCompat="@mipmap/nimlogo" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:text="is feeling you"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="188dp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#FF808080"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </android.support.constraint.ConstraintLayout>
