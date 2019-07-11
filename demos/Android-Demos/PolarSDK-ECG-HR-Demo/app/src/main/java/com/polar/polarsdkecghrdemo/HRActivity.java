@@ -103,6 +103,9 @@ public class HRActivity extends AppCompatActivity implements PlotterListener {
             @Override
             public void hrFeatureReady(String s) {
                 Log.d(TAG, "HR Feature ready " + s);
+                Toast.makeText(classContext, "HR feature ready!" + s,
+                        Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -126,14 +129,7 @@ public class HRActivity extends AppCompatActivity implements PlotterListener {
             public void hrNotificationReceived(String s,
                                                PolarHrData polarHrData) {
                 Log.d(TAG, "HR " + polarHrData.hr);
-                List<Integer> rrsMs = polarHrData.rrsMs;
                 String msg = String.valueOf(polarHrData.hr) + "\n";
-                for (int i : rrsMs) {
-                    msg += i + ",";
-                }
-                if (msg.endsWith(",")) {
-                    msg = msg.substring(0, msg.length() - 1);
-                }
                 textViewHR.setText(msg);
                 plotter.addValues(polarHrData);
             }
@@ -149,11 +145,10 @@ public class HRActivity extends AppCompatActivity implements PlotterListener {
             a.printStackTrace();
         }
 
-        plotter = new TimePlotter(this, "HR/RR");
+        plotter = new TimePlotter(this, "Heart Rate");
         plotter.setListener(this);
 
         plot.addSeries(plotter.getHrSeries(), plotter.getHrFormatter());
-        plot.addSeries(plotter.getRrSeries(), plotter.getRrFormatter());
         plot.setRangeBoundaries(50, 100,
                 BoundaryMode.AUTO);
         plot.setDomainBoundaries(0, 360000,

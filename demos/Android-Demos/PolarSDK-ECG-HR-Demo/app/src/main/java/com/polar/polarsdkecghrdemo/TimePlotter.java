@@ -45,8 +45,6 @@ public class TimePlotter {
         for (int i = 0; i < NVALS; i++) {
             xHrVals[i] = new Double(startTime + i * delta);
             yHrVals[i] = new Double(60);
-            xRrVals[i] = new Double(startTime + i * delta);
-            yRrVals[i] = new Double(100);
         }
 
         hrFormatter = new LineAndPointFormatter(Color.RED,
@@ -55,30 +53,16 @@ public class TimePlotter {
         hrSeries = new SimpleXYSeries(Arrays.asList(xHrVals),
                 Arrays.asList(yHrVals),
                 "HR");
-
-        rrFormatter = new LineAndPointFormatter(Color.BLUE,
-                null, null, null);
-        rrFormatter.setLegendIconEnabled(false);
-        rrSeries = new SimpleXYSeries(Arrays.asList(xRrVals),
-                Arrays.asList(yRrVals),
-                "HR");
     }
 
     public SimpleXYSeries getHrSeries() {
         return (SimpleXYSeries) hrSeries;
     }
 
-    public SimpleXYSeries getRrSeries() {
-        return (SimpleXYSeries) rrSeries;
-    }
-
     public XYSeriesFormatter getHrFormatter() {
         return hrFormatter;
     }
 
-    public XYSeriesFormatter getRrFormatter() {
-        return rrFormatter;
-    }
 
     /**
      * Implements a strip chart by moving series data backwards and adding
@@ -97,38 +81,6 @@ public class TimePlotter {
         xHrVals[NVALS - 1] = new Double(time);
         yHrVals[NVALS - 1] = new Double(polarHrData.hr);
         hrSeries.setXY(xHrVals[NVALS - 1], yHrVals[NVALS - 1], NVALS - 1);
-
-        // Do RR
-        // We don't know at what time the RR intervals start.  All we know is
-        // the time the data arrived (the current time, now). This
-        // implementation assumes they end at the current time, and spaces them
-        // out in the past accordingly.  This seems to get the
-        // relative positioning reasonably well.
-
-        // Scale the RR values by this to use the same axis. (Could implement
-        // NormedXYSeries and use two axes)
-        List<Integer> rrsMs = polarHrData.rrsMs;
-        int nRrVals = rrsMs.size();
-        if (nRrVals > 0) {
-            for (int i = 0; i < NVALS - nRrVals; i++) {
-                xRrVals[i] = xRrVals[i + 1];
-                yRrVals[i] = yRrVals[i + 1];
-                rrSeries.setXY(xRrVals[i], yRrVals[i], i);
-            }
-            double totalRR = 0;
-            for (int i = 0; i < nRrVals; i++) {
-                totalRR += RR_SCALE * rrsMs.get(i);
-            }
-            int index = 0;
-            double rr;
-            for (int i = NVALS - nRrVals; i < NVALS; i++) {
-                rr = RR_SCALE * rrsMs.get(index++);
-                xRrVals[i] = new Double(time - totalRR);
-                yRrVals[i] = new Double(rr);
-                totalRR -= rr;
-                rrSeries.setXY(xRrVals[i], yRrVals[i], i);
-            }
-        }
 
         listener.update();
     }
