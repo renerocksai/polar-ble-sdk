@@ -1,7 +1,6 @@
-package com.polar.polarsdkecghrdemo;
+package org.nim.hrrecording;
 
 import android.Manifest;
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.nim.hrrecording.R;
 
 
 public class MainActivity extends AppCompatActivity {

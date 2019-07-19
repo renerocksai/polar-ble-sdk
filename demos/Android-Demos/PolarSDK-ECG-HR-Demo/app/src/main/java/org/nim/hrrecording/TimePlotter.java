@@ -1,4 +1,4 @@
-package com.polar.polarsdkecghrdemo;
+package org.nim.hrrecording;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,7 +9,6 @@ import com.androidplot.xy.XYSeriesFormatter;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import polar.com.sdk.api.model.PolarHrData;
 

@@ -1,4 +1,4 @@
-package com.polar.polarsdkecghrdemo;
+package org.nim.hrrecording;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
